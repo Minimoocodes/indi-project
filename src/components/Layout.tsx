@@ -1,12 +1,21 @@
 import { Outlet } from "react-router-dom";
 import Heading from "./Heading";
+import { useState } from "react";
+import { RecipeTwistContext } from "../context/RecipeTwistContext";
+import { TrimmedData } from "../hooks/useTwistRecipe";
 
 const Layout = () => {
+  const [twistedRecipes, setTwistedRecipes] = useState<TrimmedData[]>([]);
+
   return (
     <>
       <Heading />
       <div>
-        <Outlet />
+        <RecipeTwistContext.Provider
+          value={{ twistedRecipes, setTwistedRecipes }}
+        >
+          <Outlet />
+        </RecipeTwistContext.Provider>
       </div>
     </>
   );

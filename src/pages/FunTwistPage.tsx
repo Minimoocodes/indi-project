@@ -9,9 +9,12 @@ import {
 } from "@chakra-ui/react";
 import { recipes } from "../data";
 import RecipeCard from "../components/common/RecipeCard";
-import { useTwistRecipe } from "../hooks/useTwistRecipe";
+import { TrimmedData, useTwistRecipe } from "../hooks/useTwistRecipe";
+import { useContext } from "react";
+import { RecipeTwistContext } from "../context/RecipeTwistContext";
 
-const FunTwist = () => {
+const FunTwistPage = () => {
+  const { twistedRecipes, setTwistedRecipes } = useContext(RecipeTwistContext);
   const {
     chosenRecipe,
     chosenTwist,
@@ -33,6 +36,12 @@ const FunTwist = () => {
     "Cheese",
     "Search",
   ];
+
+  const handleAdd = (data: TrimmedData) => {
+    setTwistedRecipes([...twistedRecipes, data]);
+  };
+
+  console.log("twisted recipes are", twistedRecipes);
 
   return (
     <SimpleGrid
@@ -117,6 +126,9 @@ const FunTwist = () => {
                 <Text>{p}</Text>
               ))}
             </Stack>
+            <Button onClick={() => handleAdd(trimmedData)}>
+              Add this to my recipe
+            </Button>
           </div>
         )}
       </GridItem>
@@ -124,4 +136,4 @@ const FunTwist = () => {
   );
 };
 
-export default FunTwist;
+export default FunTwistPage;

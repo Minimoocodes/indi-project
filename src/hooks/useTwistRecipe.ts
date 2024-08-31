@@ -3,7 +3,7 @@ import { useState } from "react";
 import { dataExample } from "../consts/dataExample";
 import { Recipe } from "../components/common/RecipeCard";
 
-interface TrimmedData {
+export interface TrimmedData {
   id: number,
   name: string, 
   description: string,
@@ -43,7 +43,7 @@ export const useTwistRecipe = () => {
       const { data } = await axios.post(`/chat/completions`, requestBody, {
         headers,
       });
-      console.log("hhh", data.choices[0].message.content); // return data;
+
       const twistedRecipe = data.choices[0].message.content;
       setTwistedRecipe(twistedRecipe);
       trimString(twistedRecipe);
@@ -51,6 +51,8 @@ export const useTwistRecipe = () => {
       console.error(error);
     }
   };
+
+
 
 const handleRecipePick = (recipe: Recipe) => {
   setChosenRecipe(recipe);

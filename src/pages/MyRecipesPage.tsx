@@ -4,7 +4,7 @@ import RecipeCategories from "../components/RecipeCategories";
 import TwistedRecipes from "../components/TwistedRecipes";
 import Profile from "../components/Profile";
 import ButtonCategories from "../components/ButtonCategories";
-import { SearchWordContext } from "../context/context";
+import { SearchWordContext } from "../context/SearchWordContext";
 
 type SearchWord = string | undefined;
 
@@ -21,6 +21,7 @@ const MyRecipes = () => {
   const handleClick = (menu: string) => {
     setActive(menu);
   };
+  console.log("active menu is", active);
   const menu = ["My recipes", "Categories", "Twisted Recipes"];
 
   return (

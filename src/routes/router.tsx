@@ -1,13 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
 import WhatToEat from "../pages/WhatToEat";
 import MyRecipes from "../pages/MyRecipesPage";
-import FunTwist from "../pages/FunTwist";
 import LogRecipes from "../pages/LogRecipesPage";
 import Layout from "../components/Layout";
 import LandingPage from "../pages/LandingPage";
 import RecipeDetailPage from "../pages/RecipeDetailPage";
 import ErrorPage from "../pages/ErrorPage";
 import SearchRecipePage from "../pages/SearchRecipePage";
+import FunTwistPage from "../pages/FunTwistPage";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       { path: "/i-have-only", element: <SearchRecipePage /> },
       { path: "/my-recipes", element: <MyRecipes /> },
       { path: "/my-recipes/:id", element: <RecipeDetailPage /> },
-      { path: "/fun-twist", element: <FunTwist /> },
+      { path: "/fun-twist", element: <FunTwistPage /> },
       { path: "/log-recipes", element: <LogRecipes /> },
     ],
   },

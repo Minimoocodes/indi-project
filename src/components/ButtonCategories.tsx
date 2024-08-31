@@ -1,7 +1,7 @@
 import { Box, Button, HStack, Input } from "@chakra-ui/react";
 import { useContext, useRef } from "react";
 import { LuSearch } from "react-icons/lu";
-import { SearchWordContext } from "../context/context";
+import { SearchWordContext } from "../context/SearchWordContext";
 import { recipes } from "../data";
 
 interface Props {

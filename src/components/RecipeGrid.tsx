@@ -2,7 +2,7 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import { recipes } from "../data";
 import RecipeCard from "./common/RecipeCard";
 import { Link } from "react-router-dom";
-import { SearchWordContext } from "../context/context";
+import { SearchWordContext } from "../context/SearchWordContext";
 import { useContext } from "react";
 
 const RecipeGrid = () => {
