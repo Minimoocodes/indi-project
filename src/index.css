@@ -1,0 +1,58 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer base {
+  @font-face {
+    font-family: "Cherry Bomb One", system-ui;
+    src: url('../src/fonts/Cherry_Bomb_One/CherryBombOne-Regular.ttf') format('ttf'),
+    url('../src/fonts/Cherry_Bomb_One/OFL.txt') format('txt');
+  }
+  @font-face {
+    font-family:"Nixie One", system-ui ;
+    src: url('../src/fonts/Nixie_One/NixieOne-Regular.ttf') format('ttf'),
+    url('../src/fonts/Nixie_One/OFL.txt') format('txt');
+  }
+  @font-face {
+    font-family:"Raleway", sans-serif; ;
+    src: url('../src/fonts/Raleway/OFL.txt') format('txt'),
+    url('../src/fonts/Raleway/Raleway-Italic-VariableFont_wght.ttf') format('ttf'),
+    url('../src/fonts/Raleway/Raleway-VariableFont_wght.ttf') format('ttf');
+  }
+} */
+
+.logo-primary {
+  font-family: "Cherry Bomb One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+.logo-secondary {
+  font-family: "Nixie One", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+
+ /* <uniquifier>: Use a unique and descriptive class name
+ <weight>: Use a value from 100 to 900  */
+
+.r-bold {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 800;
+  font-style: normal;
+}
+
+.r-semibold {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.r-regular {
+  font-family: "Raleway", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+  
