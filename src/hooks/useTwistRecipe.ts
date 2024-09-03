@@ -47,11 +47,11 @@ export const useTwistRecipe = () => {
       const twistedRecipe = data.choices[0].message.content;
       setTwistedRecipe(twistedRecipe);
       trimString(twistedRecipe);
+
     } catch (error) {
       console.error(error);
     }
   };
-
 
 
 const handleRecipePick = (recipe: Recipe) => {
@@ -88,3 +88,30 @@ return { chosenRecipe,
 }
 
 
+  // const [imageURL, setImageURL] = useState<string | null>(null);
+
+
+// const generateImage = async (name:string) => {
+//   try {
+//     const apiKey = import.meta.env.VITE_IMG_API_KEY;
+//     const headers = {
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${apiKey}`
+//     }
+
+//     const requestBody = {
+//       prompt: name,
+//       n: 1,
+//       size: "512x512"
+//     }
+
+//     const response = await axios.post('https://api.openai.com/v1/images/generations', requestBody, {
+//       headers,
+//     })
+
+//     const imageURL = response.data.data[0].url;
+//     console.log('iii',imageURL)
+//   } catch(error) {
+//     console.error("Error generating image:", error)
+//   }
+// }

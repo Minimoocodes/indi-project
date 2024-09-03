@@ -25,13 +25,17 @@ const RecipeDetail = ({ recipe }: Recipe) => {
         </ButtonGroup>
         <div className="text-lg md:text-xl">
           <ul className={instruction ? "hidden" : "block"}>
-            {recipe.ingredients.map((ingredient) => (
-              <li className="mb-5">{ingredient}</li>
+            {recipe.ingredients.map((ingredient, index) => (
+              <li key={index} className="mb-5">
+                {ingredient}
+              </li>
             ))}
           </ul>
           <ul className={instruction ? "block" : "hidden"}>
-            {recipe.process.map((p) => (
-              <li className="mb-5">{p}</li>
+            {recipe.process.map((p, index) => (
+              <li key={index} className="mb-5">
+                {p}
+              </li>
             ))}
           </ul>
         </div>
@@ -42,8 +46,10 @@ const RecipeDetail = ({ recipe }: Recipe) => {
             Ingredients
           </Text>
           <ul>
-            {recipe.ingredients.map((ingredient) => (
-              <li className="mb-5">{ingredient}</li>
+            {recipe.ingredients.map((ingredient, index) => (
+              <li key={index} className="mb-5">
+                {ingredient}
+              </li>
             ))}
           </ul>
         </Box>
@@ -52,8 +58,10 @@ const RecipeDetail = ({ recipe }: Recipe) => {
             Instruction
           </Text>
           <ul>
-            {recipe.process.map((p) => (
-              <li className="mb-5">{p}</li>
+            {recipe.process.map((p, index) => (
+              <li key={index} className="mb-5">
+                {p}
+              </li>
             ))}
           </ul>
         </Box>

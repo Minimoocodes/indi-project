@@ -1,13 +1,13 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import { recipes } from "../data";
-import RecipeCard from "./common/RecipeCard";
+import RecipeCard, { Recipe } from "./common/RecipeCard";
 import { Link } from "react-router-dom";
-import { SearchWordContext } from "../context/SearchWordContext";
-import { useContext } from "react";
 
-const RecipeGrid = () => {
-  const { searchWord, filteredRecipes } = useContext(SearchWordContext);
+interface Props {
+  filteredRecipes: Recipe[];
+}
 
+const RecipeGrid = ({ filteredRecipes }: Props) => {
   return (
     <>
       {recipes.length === 0 && (
@@ -19,7 +19,7 @@ const RecipeGrid = () => {
         marginTop={10}
         paddingX={15}
       >
-        {searchWord
+        {filteredRecipes
           ? filteredRecipes.map((recipe, index) => (
               <Link key={recipe.id} to={`/my-recipes/${recipe.id}`}>
                 <RecipeCard key={index} variant="default" recipe={recipe} />
