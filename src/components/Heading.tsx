@@ -29,15 +29,11 @@ const Heading = () => {
     setActiveMenu(menu);
   };
 
-  const handleClick = () => {
-    toggleNav();
-  };
-
   return (
     <>
       <div id="nav">
         {/* <img id="logo-image" src={MASHISSO} className="p-5 w-full" /> */}
-        <div className="hidden lg:flex justify-between items-center p-4">
+        <div className="hidden lg:flex justify-between items-center p-4 h-[8vh]">
           <ul className="flex gap-4 r-semibold items-center ">
             <Link to="/">
               <li
