@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Heading from "./Heading";
 import { useState } from "react";
-import { RecipeTwistContext } from "../context/RecipeTwistContext";
+import { RecipeTwistContext } from "../consts/contexts";
 import { TrimmedData } from "../hooks/useTwistRecipe";
 
 const Layout = () => {
@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       <Heading />
-      <div>
+      <div className="mt-[8vh]">
         <RecipeTwistContext.Provider
           value={{ twistedRecipes, setTwistedRecipes }}
         >

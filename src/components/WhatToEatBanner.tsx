@@ -1,11 +1,14 @@
 import Pasta from "../assets/Pasta.jpg";
 import Ingredients from "../assets/Ingredients.jpg";
 import { Box, Button, SimpleGrid } from "@chakra-ui/react";
+import { useContext } from "react";
+import { WhatToEatContext } from "../consts/contexts";
 
 const WhatToEatBanner = () => {
+  const { IngreRecipeRef, RandomRecipeRef } = useContext(WhatToEatContext);
   return (
     <div>
-      <SimpleGrid columns={{ sm: 1, md: 2 }} height="90vh">
+      <SimpleGrid columns={{ sm: 1, md: 2 }} height="92vh">
         <Box
           style={{
             backgroundImage: `url(${Ingredients})`,

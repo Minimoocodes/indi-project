@@ -1,5 +1,5 @@
 import { Box, Button, ButtonGroup, Text } from "@chakra-ui/react";
-import { Recipe } from "../pages/WhatToEat";
+import { Recipe } from "../pages/WhatToEatPage";
 import { useState } from "react";
 
 const RecipeDetail = ({ recipe }: Recipe) => {

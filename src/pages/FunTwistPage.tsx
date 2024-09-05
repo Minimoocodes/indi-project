@@ -11,7 +11,7 @@ import { recipes } from "../data";
 import RecipeCard from "../components/common/RecipeCard";
 import { TrimmedData, useTwistRecipe } from "../hooks/useTwistRecipe";
 import { useContext } from "react";
-import { RecipeTwistContext } from "../context/RecipeTwistContext";
+import { RecipeTwistContext } from "../consts/contexts";
 
 const FunTwistPage = () => {
   const { twistedRecipes, setTwistedRecipes } = useContext(RecipeTwistContext);

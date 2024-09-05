@@ -33,7 +33,7 @@ const Heading = () => {
     <>
       <div id="nav">
         {/* <img id="logo-image" src={MASHISSO} className="p-5 w-full" /> */}
-        <div className="hidden lg:flex justify-between items-center p-4 h-[8vh]">
+        <div className="hidden lg:flex justify-between items-center p-4 h-[8vh] fixed top-0 w-full z-10 bg-white  ">
           <ul className="flex gap-4 r-semibold items-center ">
             <Link to="/">
               <li

@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import WhatToEat from "../pages/WhatToEat";
+import WhatToEat from "../pages/WhatToEatPage";
 import MyRecipes from "../pages/MyRecipesPage";
 import LogRecipes from "../pages/LogRecipesPage";
 import Layout from "../components/Layout";
