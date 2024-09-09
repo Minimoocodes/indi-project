@@ -42,15 +42,16 @@ const RecipeCard = ({ variant, recipe, showRandomRecipe, onClick }: Props) => {
     return (
       <Box key={recipe.id}>
         <Image src={recipe.photo} />
-        <HStack className="justify-between items-center px-2">
-          <Text className="r-semibold text-lg text-center mt-3 md:text-xl">
-            {recipe.name}
-          </Text>
-          <Like onClick={() => console.log("clicked")} />
-        </HStack>
-        <Link key={recipe.id} to={`/my-recipes/${recipe.id}`}>
-          <Center>View Recipe</Center>
-        </Link>
+        <Stack justify="center" align="center">
+          <HStack justify="center">
+            <Text className="r-semibold text-lg text-center mt-3 md:text-xl">
+              {recipe.name}
+            </Text>
+          </HStack>
+          <Link key={recipe.id} to={`/my-recipes/${recipe.id}`}>
+            <Button className="self-center">View Recipe</Button>
+          </Link>
+        </Stack>
       </Box>
     );
   };

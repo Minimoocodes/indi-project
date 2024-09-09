@@ -1,65 +1,91 @@
-import { useContext, useRef, useState } from "react";
-import { WhatToEatContext } from "../consts/contexts";
-import { recipes } from "../data";
+import { useContext, useEffect, useRef, useState } from "react";
 import RecipeCard from "./common/RecipeCard";
-import { Text } from "@chakra-ui/react";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { recipes } from "../data";
+import { Button } from "@chakra-ui/react";
+import { LandingPageContext } from "../consts/contexts";
 
 const Slider = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const cardsToShow = 3;
+  const { secondSection } = useContext<HTMLDivElement>(LandingPageContext);
+  const sliderRef = useRef<HTMLDivElement>(null);
+  const [centerIndex, setCenterIndex] = useState<number | null>(null);
+
+  const cardWidth = 260;
+  const cardsToShow = 5;
   const middleCardIndex = Math.floor(cardsToShow / 2);
 
-  const swipeLeft = () => {
-    setCurrentIndex((prevIndex) => Math.max(prevIndex - cardsToShow, 0));
-  };
+  useEffect(() => {
+    const updateCenterIndex = () => {
+      if (sliderRef.current) {
+        const centerOffset =
+          sliderRef.current.scrollLeft + sliderRef.current.offsetWidth / 2;
+        const cardElements = Array.from(
+          sliderRef.current.children
+        ) as HTMLElement[];
 
-  const swipeRight = () => {
-    setCurrentIndex((prevIndex) =>
-      Math.min(prevIndex + cardsToShow, recipes.length - cardsToShow)
-    );
-  };
-  // const { center } = useContext(WhatToEatContext);
+        let closestIndex = null;
+        let minDistance = Infinity;
 
-  const center = useRef();
+        cardElements.forEach((card, index) => {
+          const cardCenter = card.offsetLeft + card.offsetWidth / 2;
+          const distance = Math.abs(cardCenter - centerOffset);
+
+          if (distance < minDistance) {
+            minDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        setCenterIndex(closestIndex);
+      }
+    };
+
+    // Update center index on scroll
+    sliderRef.current?.addEventListener("scroll", updateCenterIndex);
+    updateCenterIndex(); // Initial calculation
+
+    return () => {
+      sliderRef.current?.removeEventListener("scroll", updateCenterIndex);
+    };
+  }, [sliderRef.current]);
+
+  const goToRandom = () => {
+    const randomNum = Math.floor(Math.random() * recipes.length);
+    const randomCardId = `card${recipes[randomNum].id}`;
+    const element = document.getElementById(randomCardId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "center",
+        inline: "center",
+      });
+    }
+  };
 
   return (
     <div
-      ref={center}
-      className="p-8 h-[92vh] flex flex-col justify-center items-center"
+      ref={secondSection}
+      className="h-[92vh] flex flex-col justify-center items-center gap-5"
     >
-      <Text className="r-semibold text-lg mb-2 md:text-2xl">
-        How about this one?
-      </Text>
-      <div className="flex items-center justify-center">
-        <MdChevronLeft
-          size={60}
-          className="opacity-50 hover:opacity-90"
-          onClick={() => swipeLeft(center)}
-        />
-        <div
-          className="flex gap-10 w-[74rem] overflow-hidden p-10 transition-transform duration-300 ease-in-out"
-          ref={center}
-        >
-          {recipes
-            .slice(currentIndex, currentIndex + cardsToShow)
-            .map((r, index) => (
-              <div
-                key={r.id}
-                className={`transition-transform duration-500 ${
-                  index === middleCardIndex ? "scale-110" : "scale-100"
-                }`}
-              >
-                <RecipeCard variant="random" recipe={r} />
-              </div>
-            ))}
-        </div>
-        <MdChevronRight
-          size={60}
-          className="opacity-50 hover:opacity-90"
-          onClick={() => swipeRight(center)}
-        />
+      <div
+        ref={sliderRef}
+        className="slider flex gap-5 overflow-hidden w-[90rem] h-[50vh] scroll-smooth p-6"
+      >
+        {recipes.map((r, index) => (
+          <div
+            key={index}
+            id={`card${r.id}`}
+            className="flex-shrink-0"
+            style={{
+              width: `${cardWidth}px`,
+              transform: `scale(${centerIndex === index ? 1.2 : 0.9})`,
+              transition: "transform 0.3s ease-in-out",
+            }}
+          >
+            <RecipeCard recipe={r} variant="default" />
+          </div>
+        ))}
       </div>
+      <Button onClick={goToRandom}>SPIN AGAIN</Button>
     </div>
   );
 };
