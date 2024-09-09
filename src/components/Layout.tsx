@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       <Heading />
-      <div className="mt-[8vh]">
+      <div className={"mt-[1vh] lg:mt-[8vh]"}>
         <RecipeTwistContext.Provider
           value={{ twistedRecipes, setTwistedRecipes }}
         >

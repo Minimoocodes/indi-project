@@ -1,27 +1,18 @@
-import {
-  Box,
-  Button,
-  GridItem,
-  HStack,
-  SimpleGrid,
-  Text,
-  Stack,
-} from "@chakra-ui/react";
+import { useTwistRecipe } from "../hooks/useTwistRecipe";
 import { recipes } from "../data";
 import RecipeCard from "../components/common/RecipeCard";
-import { TrimmedData, useTwistRecipe } from "../hooks/useTwistRecipe";
-import { useContext } from "react";
-import { RecipeTwistContext } from "../consts/contexts";
+import Mix from "../components/Mix";
+import MixResult from "../components/MixResult";
+import { Box, Button, GridItem, SimpleGrid, Text } from "@chakra-ui/react";
+import { MixContext } from "../consts/contexts";
 
 const FunTwistPage = () => {
-  const { twistedRecipes, setTwistedRecipes } = useContext(RecipeTwistContext);
   const {
+    handleRecipePick,
+    handleTwist,
     chosenRecipe,
     chosenTwist,
     trimmedData,
-    handleRecipePick,
-    handleTwist,
-    getData,
   } = useTwistRecipe();
 
   const twist = [
@@ -37,102 +28,52 @@ const FunTwistPage = () => {
     "Search",
   ];
 
-  const handleAdd = (data: TrimmedData) => {
-    setTwistedRecipes([...twistedRecipes, data]);
-  };
-
-  console.log("twisted recipes are", twistedRecipes);
-
   return (
-    <SimpleGrid
-      templateAreas={`"grid twist"
-                      "mix mix"
-                      "result result"`}
-      gridTemplateColumns={"1fr 1fr"}
-      padding={2}
-      gap="2"
-    >
-      <GridItem area={"grid"}>
-        <Text className="r-semibold text-center text-md md:text-2xl mb-3">
-          Choose your recipe
-        </Text>
-        <SimpleGrid
-          columns={{ sm: 3, md: 4 }}
-          padding={5}
-          className="border-r-2"
-        >
-          {recipes.map((recipe) => (
-            <RecipeCard
-              key={recipe.id}
-              variant="simple"
-              recipe={recipe}
-              onClick={() => handleRecipePick(recipe)}
-            />
-          ))}
-        </SimpleGrid>
-      </GridItem>
-      <GridItem className="r-regular" area="twist">
-        <Text className="r-semibold text-center text-md md:text-2xl mb-3">
-          Add your twist
-        </Text>
-        <Box padding={5}>
-          {twist.map((t, index) => (
-            <Button
-              key={index}
-              size="lg"
-              className="m-2"
-              onClick={() => handleTwist(t)}
-            >
-              {t}
-            </Button>
-          ))}
-        </Box>
-      </GridItem>
-      <GridItem area="mix" padding={5}>
-        <HStack className="flex justify-center r-regular text-xl md:text-2xl">
-          <Text>Adding</Text>
-          <span className="r-semibold underline">{chosenTwist}</span>
-          <Text>Twist to your </Text>
-          <span className="r-semibold underline">{chosenRecipe?.name}</span>
-          <Text>recipe </Text>
-          <Button onClick={getData}>Mix</Button>
-        </HStack>
-      </GridItem>
-      <GridItem area="result" padding="3">
-        {trimmedData && (
-          <div className="r-regular flex flex-col gap-2">
-            <Text className="r-semibold text-lg text-center md:text-xl">
-              {trimmedData?.name}
+    <>
+      <MixContext.Provider value={{}}>
+        <SimpleGrid columns={{ sm: 1, md: 2 }}>
+          <GridItem>
+            <Text className="r-semibold text-center text-md md:text-2xl mb-3">
+              Choose your recipe
             </Text>
-            <Text>{trimmedData?.description}</Text>
-            <HStack>
-              <Text>Only</Text>
-              {trimmedData?.addedIngredients.map((i, index) => (
-                <HStack spacing={1} key={index}>
-                  <Text className="underline">{i},</Text>
-                </HStack>
+            <SimpleGrid
+              columns={{ sm: 3, lg: 4 }}
+              paddingX={5}
+              className="border-r-2 overflow-y-scroll"
+              height={"67vh"}
+            >
+              {recipes.map((recipe) => (
+                <RecipeCard
+                  key={recipe.id}
+                  variant="simple"
+                  recipe={recipe}
+                  onClick={() => handleRecipePick(recipe)}
+                />
               ))}
-              <Text>is/are added to your original recipe.</Text>
-            </HStack>
-            <Stack>
-              <Text className="r-semibold">Ingredients</Text>
-              {trimmedData?.ingredients?.map((i) => (
-                <Text>{i}</Text>
+            </SimpleGrid>
+          </GridItem>
+          <GridItem className="r-regular">
+            <Text className="r-semibold text-center text-md md:text-2xl mb-3">
+              Add your twist
+            </Text>
+            <Box paddingX={5}>
+              {twist.map((t, index) => (
+                <Button
+                  key={index}
+                  size="lg"
+                  className="m-2"
+                  onClick={() => handleTwist(t)}
+                >
+                  {t}
+                </Button>
               ))}
-            </Stack>
-            <Stack>
-              <Text className="r-semibold">How to make</Text>
-              {trimmedData?.process?.map((p) => (
-                <Text>{p}</Text>
-              ))}
-            </Stack>
-            <Button onClick={() => handleAdd(trimmedData)}>
-              Add this to my recipe
-            </Button>
-          </div>
-        )}
-      </GridItem>
-    </SimpleGrid>
+            </Box>
+          </GridItem>
+        </SimpleGrid>
+        <Mix chosenRecipe={chosenRecipe} chosenTwist={chosenTwist} />
+        <MixResult trimmedData={trimmedData} />
+      </MixContext.Provider>
+    </>
   );
 };
 

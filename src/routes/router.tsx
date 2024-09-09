@@ -6,7 +6,6 @@ import Layout from "../components/Layout";
 import LandingPage from "../pages/LandingPage";
 import RecipeDetailPage from "../pages/RecipeDetailPage";
 import ErrorPage from "../pages/ErrorPage";
-import SearchRecipePage from "../pages/SearchRecipePage";
 import FunTwistPage from "../pages/FunTwistPage";
 
 const router = createBrowserRouter([
@@ -17,7 +16,6 @@ const router = createBrowserRouter([
     children: [
       { index: true, element: <LandingPage /> },
       { path: "/what-to-eat", element: <WhatToEat /> },
-      { path: "/i-have-only", element: <SearchRecipePage /> },
       { path: "/my-recipes", element: <MyRecipes /> },
       { path: "/my-recipes/:id", element: <RecipeDetailPage /> },
       { path: "/fun-twist", element: <FunTwistPage /> },

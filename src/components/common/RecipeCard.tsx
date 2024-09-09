@@ -8,6 +8,7 @@ import {
   Center,
 } from "@chakra-ui/react";
 import Like from "../Like";
+import { Link } from "react-router-dom";
 
 export interface Recipe {
   photo: string;
@@ -47,24 +48,33 @@ const RecipeCard = ({ variant, recipe, showRandomRecipe, onClick }: Props) => {
           </Text>
           <Like onClick={() => console.log("clicked")} />
         </HStack>
-        <Center>View Recipe</Center>
+        <Link key={recipe.id} to={`/my-recipes/${recipe.id}`}>
+          <Center>View Recipe</Center>
+        </Link>
       </Box>
     );
   };
 
   const renderSimpleVariant = () => {
     return (
-      <Box className="border-l-2 px-2 last:border-x-2 py-2" onClick={onClick}>
-        <Image src={recipe.photo} />
+      <Box
+        className="p-2 inline-block cursor-pointer hover:scale-105 ease-in-out duration-300"
+        onClick={onClick}
+      >
+        <Image src={recipe.photo} objectFit={"contain"} />
       </Box>
     );
   };
 
   const renderRandomVariant = () => {
     return (
-      <Box maxW="lg" className="r-regular">
-        <Stack className="flex flex-col justify-center items-center gap-5">
-          <Image src={recipe.photo} />
+      <Box
+        maxW="lg"
+        objectFit="cover"
+        className="r-regular shadow-xl rounded-md p-5 max-h-[30rem] shadow-stone-300 bg-orange-50/50"
+      >
+        <Stack className="flex flex-col justify-center items-center gap-5 ">
+          <Image src={recipe.photo} boxSize="20rem" objectFit="contain" />
           <Text className="text-center r-bold text-lg">{recipe.name}</Text>
           <HStack>
             <Text className="border-r-2 px-2"> {recipe.time}</Text>
@@ -74,8 +84,12 @@ const RecipeCard = ({ variant, recipe, showRandomRecipe, onClick }: Props) => {
             <Text>{recipe.categories[0]}</Text>
           </HStack>
           <HStack className="flex justify-center gap-3">
-            <Button>View Recipe</Button>
-            <Button onClick={showRandomRecipe}>Show Another One</Button>
+            <Link to={`/my-recipes/${recipe.id}`}>
+              <Button colorScheme="orange">View Recipe</Button>
+            </Link>
+            <Button colorScheme="orange" onClick={showRandomRecipe}>
+              Show Another One
+            </Button>
           </HStack>
         </Stack>
       </Box>

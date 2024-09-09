@@ -17,18 +17,16 @@ const RecipeGrid = ({ filteredRecipes }: Props) => {
         columns={{ sm: 1, md: 3, lg: 4 }}
         spacing={5}
         marginTop={10}
-        paddingX={15}
+        paddingX={20}
       >
         {filteredRecipes
           ? filteredRecipes.map((recipe, index) => (
-              <Link key={recipe.id} to={`/my-recipes/${recipe.id}`}>
-                <RecipeCard key={index} variant="default" recipe={recipe} />
-              </Link>
+              <RecipeCard key={index} variant="default" recipe={recipe} />
             ))
           : recipes.map((recipe, index) => (
-              <Link key={recipe.id} to={`/my-recipes/${recipe.id}`}>
-                <RecipeCard key={index} variant="default" recipe={recipe} />
-              </Link>
+              // <Link key={recipe.id} to={`/my-recipes/${recipe.id}`}>
+              <RecipeCard key={index} variant="default" recipe={recipe} />
+              // </Link>
             ))}
       </SimpleGrid>
     </>

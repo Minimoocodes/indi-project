@@ -1,35 +1,36 @@
-import RecipeCard from "../components/common/RecipeCard";
-import RecipeDetail from "../components/RecipeDetail";
-import WhatToEatBanner from "../components/WhatToEatBanner";
-import { SimpleGrid } from "@chakra-ui/react";
-import { useRandom } from "../hooks/useRandom";
-import WhatToEatIngredients from "../components/WhatToEatIngredients";
-import { WhatToEatContext } from "../consts/contexts";
 import { useRef } from "react";
+import { useRandom } from "../hooks/useRandom";
+import { WhatToEatContext } from "../consts/contexts";
+import WhatToEatBanner from "../components/WhatToEatBanner";
+import WhatToEatIngredients from "../components/WhatToEatIngredients";
+import RecipeCard from "../components/common/RecipeCard";
+import { Stack, Text } from "@chakra-ui/react";
 
 const WhatToEat = () => {
   const { randomRecipe, showRandomRecipe } = useRandom();
-  const IngreRecipeRef = useRef();
-  const RandomRecipeRef = useRef();
+  const IngreRecipeRef = useRef<HTMLDivElement>();
+  const RandomRecipeRef = useRef<HTMLDivElement>();
 
   return (
     <>
       <WhatToEatContext.Provider value={{ IngreRecipeRef, RandomRecipeRef }}>
         <WhatToEatBanner />
-        <WhatToEatIngredients ref={IngreRecipeRef} />
-        <SimpleGrid columns={{ sm: 1, md: 2 }}>
-          <div
-            ref={RandomRecipeRef}
-            className="h-full flex flex-col justify-center items-center gap-10 p-8"
-          >
-            <RecipeCard
-              variant="random"
-              recipe={randomRecipe}
-              showRandomRecipe={showRandomRecipe}
-            />
-          </div>
-          <RecipeDetail recipe={randomRecipe} />
-        </SimpleGrid>
+        <WhatToEatIngredients />
+        <div
+          ref={RandomRecipeRef}
+          className="h-[92vh] flex justify-center items-center gap-10"
+        >
+          <Stack className="r-semibold text-7xl">
+            <Text>HOW</Text>
+            <Text>ABOUT</Text>
+            <Text>THIS?</Text>
+          </Stack>
+          <RecipeCard
+            recipe={randomRecipe}
+            variant="random"
+            showRandomRecipe={showRandomRecipe}
+          />
+        </div>
       </WhatToEatContext.Provider>
     </>
   );

@@ -33,7 +33,7 @@ const Heading = () => {
     <>
       <div id="nav">
         {/* <img id="logo-image" src={MASHISSO} className="p-5 w-full" /> */}
-        <div className="hidden lg:flex justify-between items-center p-4 h-[8vh] fixed top-0 w-full z-10 bg-white  ">
+        <div className="hidden lg:flex justify-between items-center p-4 h-[8vh] fixed top-0 w-full z-10 bg-white">
           <ul className="flex gap-4 r-semibold items-center ">
             <Link to="/">
               <li
@@ -107,7 +107,7 @@ const Heading = () => {
             : "fixed top-0 right-[-100%]"
         }
       >
-        <ul className="uppercase r-semibold text-white p-5 text-xl text-right ">
+        <ul className="uppercase r-semibold text-white p-5 text-xl text-right">
           <li className="mb-16">Menu</li>
           <Link to="/what-to-eat">
             <li className="mb-16" onClick={() => setShowNav(false)}>

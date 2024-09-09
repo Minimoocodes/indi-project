@@ -1,8 +1,8 @@
-import { Box, Input } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import { LuSearch } from "react-icons/lu";
-import RecipeGrid from "./RecipeGrid";
 import { recipes } from "../data";
+import RecipeGrid from "./RecipeGrid";
+import { Box, Input } from "@chakra-ui/react";
+import { LuSearch } from "react-icons/lu";
 
 const SearchedRecipes = () => {
   const [searchWord, setSearchWord] = useState<Search>(undefined);
@@ -20,9 +20,11 @@ const SearchedRecipes = () => {
 
   return (
     <div className="p-5">
-      <Box className={"flex gap-1 items-center"}>
-        <Input placeholder="Budget" ref={searchRef} />
-        <LuSearch size={30} onClick={handleSearch} />
+      <Box className="flex gap-1 items-center justify-center">
+        <div className="w-[40rem] flex gap-4">
+          <Input variant="flushed" placeholder="Budget" ref={searchRef} />
+          <LuSearch size={30} onClick={handleSearch} />
+        </div>
       </Box>
       <RecipeGrid filteredRecipes={filteredRecipes} />
     </div>

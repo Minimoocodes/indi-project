@@ -16,7 +16,13 @@ const WhatToEatBanner = () => {
           }}
           className="flex justify-center items-center"
         >
-          <Button size="lg" colorScheme="blackAlpha">
+          <Button
+            size="lg"
+            colorScheme="blackAlpha"
+            onClick={() =>
+              IngreRecipeRef.current.scrollIntoView({ behavior: "smooth" })
+            }
+          >
             What can I cook with only these..
           </Button>
         </Box>
@@ -24,7 +30,13 @@ const WhatToEatBanner = () => {
           style={{ backgroundImage: `url(${Pasta})`, backgroundSize: "cover" }}
           className="flex justify-center items-center"
         >
-          <Button size="lg" colorScheme="blackAlpha">
+          <Button
+            onClick={() =>
+              RandomRecipeRef.current.scrollIntoView({ behavior: "smooth" })
+            }
+            size="lg"
+            colorScheme="blackAlpha"
+          >
             A random one from my recipes{" "}
           </Button>
         </Box>
