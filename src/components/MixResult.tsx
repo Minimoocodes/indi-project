@@ -3,16 +3,14 @@ import { RecipeTwistContext } from "../consts/contexts";
 import { TrimmedData, useTwistRecipe } from "../hooks/useTwistRecipe";
 import { Box, Button, HStack, Stack, Text } from "@chakra-ui/react";
 
-interface Props {
-  trimmedData: TrimmedData;
-}
-
-const MixResult = ({ trimmedData }: Props) => {
+const MixResult = () => {
   const { twistedRecipes, setTwistedRecipes } = useContext(RecipeTwistContext);
-  // const { chosenRecipe, chosenTwist, trimmedData } = useTwistRecipe();
+  const { trimmedData } = useTwistRecipe();
 
   const handleAdd = (data: TrimmedData) => {
     setTwistedRecipes([...twistedRecipes, data]);
+
+    localStorage.setItem("savedRecipes", twistedRecipes);
   };
 
   console.log("twisted recipes are", twistedRecipes);

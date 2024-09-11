@@ -1,24 +1,34 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { RecipeTwistContext } from "../consts/contexts";
 import { TrimmedData } from "../hooks/useTwistRecipe";
 import { Text } from "@chakra-ui/react";
 
 const TwistedRecipes = () => {
-  const { twistedRecipes } = useContext<TrimmedData | undefined>(
-    RecipeTwistContext
-  );
-  console.log("it better work", twistedRecipes);
+  // const { twistedRecipes } = useContext<TrimmedData | undefined>(
+  //   RecipeTwistContext
+  // );
+  const [savedRecipes, setSavedRecipes] = useState<TrimmedData | undefined>([]);
+
+  useEffect(() => {
+    const allSavedRecipes = localStorage.getItem("savedRecipes");
+    if (allSavedRecipes) {
+      setSavedRecipes(JSON.parse(allSavedRecipes));
+    }
+  }, []);
+
+  console.log("it better work", savedRecipes);
 
   return (
     <div>
-      {twistedRecipes.length === 0 ? (
+      {!savedRecipes ? (
         <Text>'There's no twisted Recipes yet!</Text>
       ) : (
         <>
-          <Text>Twisted Recipes will come here</Text>
-          {twistedRecipes.map((r) => (
-            <h1>{r.name}</h1>
-          ))}
+          <ul>
+            {savedRecipes.map((r) => (
+              <li>{r.name}</li>
+            ))}
+          </ul>
         </>
       )}
     </div>
