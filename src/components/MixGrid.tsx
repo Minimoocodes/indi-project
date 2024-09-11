@@ -1,7 +1,8 @@
-import { Box, Button, GridItem, SimpleGrid, Text } from "@chakra-ui/react";
+import { Box, GridItem, SimpleGrid, Text } from "@chakra-ui/react";
 import RecipeCard from "./common/RecipeCard";
 import { recipes } from "../data";
 import { useTwistRecipe } from "../hooks/useTwistRecipe";
+import Buttons from "./common/Button";
 
 const twist = [
   "Italian",
@@ -10,6 +11,8 @@ const twist = [
   "Vietnamese",
   "Korean",
   "Mexican",
+  "Chinese",
+  "Vegetarian",
   "Spicy",
   "Mild",
   "Cheese",
@@ -44,16 +47,11 @@ const MixGrid = () => {
         <Text className="r-semibold text-center text-md md:text-xl mb-3">
           Add your twist
         </Text>
-        <Box paddingX={5}>
+        <Box paddingX={5} className="flex gap-4 flex-wrap">
           {twist.map((t, index) => (
-            <Button
-              key={index}
-              size="lg"
-              className="m-2"
-              onClick={() => handleTwist(t)}
-            >
+            <Buttons key={index} variant="large" onClick={() => handleTwist(t)}>
               {t}
-            </Button>
+            </Buttons>
           ))}
         </Box>
       </GridItem>

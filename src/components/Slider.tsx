@@ -1,8 +1,8 @@
 import { useContext, useEffect, useRef, useState } from "react";
+import { LandingPageContext } from "../consts/contexts";
 import RecipeCard from "./common/RecipeCard";
 import { recipes } from "../data";
-import { Button } from "@chakra-ui/react";
-import { LandingPageContext } from "../consts/contexts";
+import Buttons from "./common/Button";
 
 const Slider = () => {
   const { secondSection } = useContext<HTMLDivElement>(LandingPageContext);
@@ -68,7 +68,7 @@ const Slider = () => {
     >
       <div
         ref={sliderRef}
-        className="slider flex gap-5 overflow-hidden w-[90rem] h-[50vh] scroll-smooth p-6"
+        className="slider flex gap-5 overflow-hidden max-w-[78rem] scroll-smooth p-6"
       >
         {recipes.map((r, index) => (
           <div
@@ -81,11 +81,13 @@ const Slider = () => {
               transition: "transform 0.3s ease-in-out",
             }}
           >
-            <RecipeCard recipe={r} variant="default" />
+            <RecipeCard recipe={r} variant="simple" />
           </div>
         ))}
       </div>
-      <Button onClick={goToRandom}>SPIN AGAIN</Button>
+      <Buttons variant="large" onClick={goToRandom}>
+        SPIN AGAIN
+      </Buttons>
     </div>
   );
 };

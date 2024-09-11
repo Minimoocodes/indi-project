@@ -1,10 +1,9 @@
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import { recipes } from "../data";
 import RecipeCard, { Recipe } from "./common/RecipeCard";
-import { Link } from "react-router-dom";
 
 interface Props {
-  filteredRecipes: Recipe[];
+  filteredRecipes?: Recipe[];
 }
 
 const RecipeGrid = ({ filteredRecipes }: Props) => {
@@ -21,11 +20,11 @@ const RecipeGrid = ({ filteredRecipes }: Props) => {
       >
         {filteredRecipes
           ? filteredRecipes.map((recipe, index) => (
-              <RecipeCard key={index} variant="default" recipe={recipe} />
+              <RecipeCard key={index} variant="simple" recipe={recipe} />
             ))
           : recipes.map((recipe, index) => (
               // <Link key={recipe.id} to={`/my-recipes/${recipe.id}`}>
-              <RecipeCard key={index} variant="default" recipe={recipe} />
+              <RecipeCard key={index} variant="simple" recipe={recipe} />
               // </Link>
             ))}
       </SimpleGrid>

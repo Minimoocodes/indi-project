@@ -4,6 +4,7 @@ import Empty from "../assets/Empty.jpg";
 import { useMashisso } from "../hooks/useMashisso";
 import { useContext } from "react";
 import { WhatToEatContext } from "../consts/contexts";
+import Buttons from "./common/Button";
 
 const WhatToEatIngredients = () => {
   const { trimmedData, handleInput, ingredients, getData } = useMashisso();
@@ -26,9 +27,9 @@ const WhatToEatIngredients = () => {
         </Text>
         <HStack>
           <Input onChange={handleInput} value={ingredients} />
-          <Button size="md" onClick={getData}>
+          <Buttons variant="large" onClick={getData}>
             Ask MASHISSO
-          </Button>
+          </Buttons>
         </HStack>
       </Box>
       {trimmedData && (

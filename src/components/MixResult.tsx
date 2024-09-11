@@ -1,10 +1,27 @@
 import { useContext } from "react";
 import { RecipeTwistContext } from "../consts/contexts";
-import { TrimmedData, useTwistRecipe } from "../hooks/useTwistRecipe";
-import { Box, Button, HStack, Stack, Text } from "@chakra-ui/react";
+import { useTwistRecipe } from "../hooks/useTwistRecipe";
+import { Box, HStack, Stack, Text } from "@chakra-ui/react";
+import { TrimmedData } from "../consts/MixProvider";
+import Buttons from "./common/Button";
+
+interface DataExample {
+  id: number;
+  name: string;
+  description: string;
+  addedIngredients: string[];
+  process: string[];
+  time: string;
+  categories: string[];
+}
+interface Props {
+  twistedRecipes: DataExample | undefined;
+  setTwistedRecipes: ([...DataExample]) => void;
+}
 
 const MixResult = () => {
-  const { twistedRecipes, setTwistedRecipes } = useContext(RecipeTwistContext);
+  const { twistedRecipes, setTwistedRecipes } =
+    useContext<Props>(RecipeTwistContext);
   const { trimmedData } = useTwistRecipe();
 
   const handleAdd = (data: TrimmedData) => {
@@ -19,7 +36,7 @@ const MixResult = () => {
     <>
       <Box padding="3" className="flex justify-center">
         {trimmedData && (
-          <div className="pb-12 r-regular flex flex-col gap-4 max-w-[75rem]">
+          <div className="px-10 mb-12 r-regular flex flex-col gap-4 max-w-[75rem]">
             <Text className="r-semibold text-lg text-center md:text-2xl">
               {trimmedData?.name}
             </Text>
@@ -47,12 +64,13 @@ const MixResult = () => {
                 <Text>{p}</Text>
               ))}
             </Stack>
-            <Button
-              className="w-[12rem] self-end"
+            <Buttons
+              className="self-end"
+              variant="large"
               onClick={() => handleAdd(trimmedData)}
             >
               Add this to my recipe
-            </Button>
+            </Buttons>
           </div>
         )}
       </Box>

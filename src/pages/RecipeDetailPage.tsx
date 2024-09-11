@@ -8,6 +8,7 @@ import {
   Stack,
   Text,
 } from "@chakra-ui/react";
+import Buttons from "../components/common/Button";
 
 const RecipeDetailPage = () => {
   const params = useParams();
@@ -19,9 +20,7 @@ const RecipeDetailPage = () => {
       className="r-regular w-[92vh]"
       spacing={4}
     >
-      <div>
-        <Image src={data.photo} objectFit="cover" />
-      </div>
+      <Image src={data.photo} objectFit="cover" />
       <Stack spacing={4}>
         <Text className="r-bold">{data.name}</Text>
         <HStack>
@@ -46,7 +45,7 @@ const RecipeDetailPage = () => {
             </Text>
           ))}
         </div>
-        <Button>Add a fun twist</Button>
+        <Buttons variant="medium">Add a fun twist</Buttons>
       </Stack>
     </SimpleGrid>
   );

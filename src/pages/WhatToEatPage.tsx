@@ -20,7 +20,7 @@ const WhatToEat = () => {
           ref={RandomRecipeRef}
           className="h-[92vh] flex justify-center items-center gap-10"
         >
-          <Stack className="r-semibold text-7xl">
+          <Stack className="r-semibold text-7xl text-[#7d6e60]">
             <Text>HOW</Text>
             <Text>ABOUT</Text>
             <Text>THIS?</Text>

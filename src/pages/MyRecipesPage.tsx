@@ -18,7 +18,7 @@ const MyRecipes = () => {
   const handleClick = (menu: string) => {
     setActive(menu);
   };
-  console.log("active menu is", active);
+
   const menu = ["My recipes", "Categories", "Twisted Recipes", "Search"];
 
   return (

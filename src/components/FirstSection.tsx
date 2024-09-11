@@ -5,6 +5,10 @@ import { LandingPageContext } from "../consts/contexts";
 
 const FirstSection = () => {
   const { secondSection } = useContext<HTMLDivElement>(LandingPageContext);
+
+  const handleClick = () => {
+    secondSection.current.scrollIntoView({ behavior: "smooth" });
+  };
   return (
     <div
       className="bg-cover bg-no-repeat flex flex-col items-center justify-center gap-4"
@@ -17,9 +21,7 @@ const FirstSection = () => {
         What delicious thing to cook now
       </Text>
       <Button
-        onClick={() =>
-          secondSection.current.scrollIntoView({ behavior: "smooth" })
-        }
+        onClick={handleClick}
         colorScheme="whiteAlpha"
         className="r-semibold"
       >

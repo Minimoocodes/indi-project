@@ -1,7 +1,8 @@
-import { Button, HStack } from "@chakra-ui/react";
+import { HStack } from "@chakra-ui/react";
+import Buttons from "./common/Button";
 
 interface Props {
-  active: "string";
+  active: string;
   handleClick: (menu: string) => void;
   menu: string[];
 }
@@ -10,13 +11,13 @@ const ButtonCategories = ({ active, handleClick, menu }: Props) => {
   return (
     <HStack className="mt-5 flex justify-center">
       {menu.map((m, index) => (
-        <Button
+        <Buttons
           key={index}
           onClick={() => handleClick(m)}
-          variant={active === m ? "solid" : "outline"}
+          variant={active === m ? "large" : "outline"}
         >
           {m}
-        </Button>
+        </Buttons>
       ))}
     </HStack>
   );
