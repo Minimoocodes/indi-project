@@ -1,6 +1,6 @@
 import { useTwistRecipe } from "../hooks/useTwistRecipe";
 import { useAddTwist } from "../hooks/useAddTwist";
-import { Box, HStack, Stack, Text } from "@chakra-ui/react";
+import { Box, Center, HStack, Spinner, Stack, Text } from "@chakra-ui/react";
 import { TrimmedData } from "../contexts/MixProvider";
 import Buttons from "./common/Button";
 
@@ -20,7 +20,7 @@ interface Props {
 
 const MixResult = () => {
   const { twistedRecipes, setTwistedRecipes } = useAddTwist<Props>();
-  const { trimmedData } = useTwistRecipe();
+  const { trimmedData, isLoading } = useTwistRecipe();
 
   const handleAdd = (data: TrimmedData) => {
     setTwistedRecipes([...twistedRecipes, data]);
@@ -32,46 +32,54 @@ const MixResult = () => {
 
   return (
     <>
-      <Box padding="3" className="flex justify-center">
-        {trimmedData && (
-          <div className="px-10 mb-12 r-regular flex flex-col gap-4 max-w-[75rem]">
-            <Text className="r-semibold text-lg text-center md:text-2xl">
-              {trimmedData?.name}
-            </Text>
-            <Text className="text-lg md:text-xl">
-              {trimmedData?.description}
-            </Text>
-            <HStack className="text-lg md:text-xl">
-              <Text>Only</Text>
-              {trimmedData?.addedIngredients.map((i, index) => (
-                <HStack spacing={1} key={index}>
-                  <Text className="underline">{i},</Text>
-                </HStack>
-              ))}
-              <Text>is/are added to your original recipe.</Text>
-            </HStack>
-            <Stack className="text-md md:text-lg">
-              <Text className="r-semibold">Ingredients</Text>
-              {trimmedData?.ingredients?.map((i) => (
-                <Text>{i}</Text>
-              ))}
-            </Stack>
-            <Stack className="text-md md:text-lg">
-              <Text className="r-semibold">How to make</Text>
-              {trimmedData?.process?.map((p) => (
-                <Text>{p}</Text>
-              ))}
-            </Stack>
-            <Buttons
-              className="self-end"
-              variant="large"
-              onClick={() => handleAdd(trimmedData)}
-            >
-              Add this to my recipe
-            </Buttons>
-          </div>
-        )}
-      </Box>
+      {isLoading ? (
+        <Center>
+          <Spinner size="lg" color="orange.500" />
+        </Center>
+      ) : (
+        <div className="p-3 flex justify-center">
+          {/* <Box padding="3" className="flex justify-center"> */}
+          {trimmedData && (
+            <div className="px-10 mb-12 r-regular flex flex-col gap-4 max-w-[75rem]">
+              <Text className="r-semibold text-lg text-center md:text-2xl">
+                {trimmedData?.name}
+              </Text>
+              <Text className="text-lg md:text-xl">
+                {trimmedData?.description}
+              </Text>
+              <HStack className="text-lg md:text-xl">
+                <Text>Only</Text>
+                {trimmedData?.addedIngredients.map((i, index) => (
+                  <HStack spacing={1} key={index}>
+                    <Text className="underline">{i},</Text>
+                  </HStack>
+                ))}
+                <Text>is/are added to your original recipe.</Text>
+              </HStack>
+              <Stack className="text-md md:text-lg">
+                <Text className="r-semibold">Ingredients</Text>
+                {trimmedData?.ingredients?.map((i) => (
+                  <Text>{i}</Text>
+                ))}
+              </Stack>
+              <Stack className="text-md md:text-lg">
+                <Text className="r-semibold">How to make</Text>
+                {trimmedData?.process?.map((p) => (
+                  <Text>{p}</Text>
+                ))}
+              </Stack>
+              <Buttons
+                className="self-end"
+                variant="large"
+                onClick={() => handleAdd(trimmedData)}
+              >
+                Add this to my recipe
+              </Buttons>
+            </div>
+          )}
+          {/* </Box> */}
+        </div>
+      )}
     </>
   );
 };

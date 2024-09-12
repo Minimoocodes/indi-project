@@ -33,6 +33,7 @@ export const MixProvider = ({ children }: Props) => {
   const [chosenTwist, setChosenTwist] = useState<string | null>(null);
   const [trimmedData, setTrimmedData] = useState<TrimmedData | null>(null);
   const [query, setQuery] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [twistedRecipe, setTwistedRecipe] = useState<string | null>(null);
 
   const handleTwist = (twist: string) => {
@@ -52,6 +53,7 @@ export const MixProvider = ({ children }: Props) => {
 
   const getData = async (): Promise<void> => {
     try {
+      setIsLoading(true);
       const apiKey = import.meta.env.VITE_GPT_API_KEY;
       const model = import.meta.env.VITE_GPT_MODEL;
       const headers = {
@@ -78,6 +80,8 @@ export const MixProvider = ({ children }: Props) => {
       trimString(twistedRecipe);
     } catch (error) {
       console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -100,6 +104,7 @@ export const MixProvider = ({ children }: Props) => {
     getData,
     setTwistedRecipe,
     twistedRecipe,
+    isLoading,
   };
   return (
     <MixedContext.Provider value={value}>{children}</MixedContext.Provider>
