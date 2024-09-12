@@ -1,7 +1,7 @@
 import { useRef } from "react";
-import FirstSection from "../components/FirstSection";
+import { LandingPageContext } from "../contexts/contexts";
 import Slider from "../components/Slider";
-import { LandingPageContext } from "../consts/contexts";
+import FirstSection from "../components/FirstSection";
 import Footer from "../components/Footer";
 
 const LandingPage = () => {

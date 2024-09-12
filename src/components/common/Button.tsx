@@ -41,6 +41,7 @@ const Buttons = ({ variant, children, onClick }: Props) => {
       <Box
         as="button"
         bg="#78716C"
+        maxWidth="250px"
         paddingX={5}
         paddingY={1}
         color="white"

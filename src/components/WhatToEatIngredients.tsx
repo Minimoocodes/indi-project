@@ -1,9 +1,8 @@
-import { Text, Box, Input, Button, HStack } from "@chakra-ui/react";
-import Frige from "../assets/Frige.jpg";
+import { Text, Box, Input, HStack } from "@chakra-ui/react";
 import Empty from "../assets/Empty.jpg";
 import { useMashisso } from "../hooks/useMashisso";
 import { useContext } from "react";
-import { WhatToEatContext } from "../consts/contexts";
+import { WhatToEatContext } from "../contexts/contexts";
 import Buttons from "./common/Button";
 
 const WhatToEatIngredients = () => {

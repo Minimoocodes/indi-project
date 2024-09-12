@@ -1,7 +1,7 @@
 import { Button, Text } from "@chakra-ui/react";
 import pancakes from "../assets/pancakes.jpg";
 import { useContext } from "react";
-import { LandingPageContext } from "../consts/contexts";
+import { LandingPageContext } from "../contexts/contexts";
 
 const FirstSection = () => {
   const { secondSection } = useContext<HTMLDivElement>(LandingPageContext);

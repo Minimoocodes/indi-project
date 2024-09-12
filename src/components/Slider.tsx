@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef, useState } from "react";
-import { LandingPageContext } from "../consts/contexts";
+import { LandingPageContext } from "../contexts/contexts";
 import RecipeCard from "./common/RecipeCard";
 import { recipes } from "../data";
 import Buttons from "./common/Button";

@@ -1,6 +1,6 @@
 import Mix from "../components/Mix";
 import MixResult from "../components/MixResult";
-import { MixProvider } from "../consts/MixProvider";
+import { MixProvider } from "../contexts/MixProvider";
 import MixGrid from "../components/MixGrid";
 
 const FunTwistPage = () => {

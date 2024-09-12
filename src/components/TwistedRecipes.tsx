@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { RecipeTwistContext } from "../consts/contexts";
+import { RecipeTwistContext } from "../contexts/contexts";
 import { TrimmedData } from "../hooks/useTwistRecipe";
 import { Text } from "@chakra-ui/react";
 

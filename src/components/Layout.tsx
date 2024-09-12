@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Heading from "./Heading";
 import { useState } from "react";
-import { RecipeTwistContext } from "../consts/contexts";
+import { RecipeTwistContext } from "../contexts/contexts";
 import { TrimmedData } from "../hooks/useTwistRecipe";
 
 const Layout = () => {

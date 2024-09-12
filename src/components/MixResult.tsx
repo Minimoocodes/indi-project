@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { RecipeTwistContext } from "../consts/contexts";
+import { RecipeTwistContext } from "../contexts/contexts";
 import { useTwistRecipe } from "../hooks/useTwistRecipe";
 import { Box, HStack, Stack, Text } from "@chakra-ui/react";
-import { TrimmedData } from "../consts/MixProvider";
+import { TrimmedData } from "../contexts/MixProvider";
 import Buttons from "./common/Button";
 
 interface DataExample {

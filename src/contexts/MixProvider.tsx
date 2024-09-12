@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useState } from "react";
-import { dataExample } from "./dataExample";
+import { dataExample } from "../consts/dataExample";
 import { Recipe } from "../components/common/RecipeCard";
 import axios from "axios";
 

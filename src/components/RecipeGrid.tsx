@@ -23,9 +23,7 @@ const RecipeGrid = ({ filteredRecipes }: Props) => {
               <RecipeCard key={index} variant="simple" recipe={recipe} />
             ))
           : recipes.map((recipe, index) => (
-              // <Link key={recipe.id} to={`/my-recipes/${recipe.id}`}>
               <RecipeCard key={index} variant="simple" recipe={recipe} />
-              // </Link>
             ))}
       </SimpleGrid>
     </>
