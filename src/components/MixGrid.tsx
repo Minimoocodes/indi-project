@@ -2,7 +2,9 @@ import {
   Box,
   Center,
   GridItem,
+  HStack,
   Image,
+  Input,
   SimpleGrid,
   Text,
 } from "@chakra-ui/react";
@@ -11,6 +13,8 @@ import { recipes } from "../data";
 import { useTwistRecipe } from "../hooks/useTwistRecipe";
 import Buttons from "./common/Button";
 import { useAddTwist } from "../hooks/useAddTwist";
+import { useRef, useState } from "react";
+import { LuSearch } from "react-icons/lu";
 
 const twist = [
   "Italian",
@@ -24,13 +28,20 @@ const twist = [
   "Spicy",
   "Mild",
   "Cheese",
-  "Search",
 ];
 
 const MixGrid = () => {
+  const [twistQuery, setTwistQuery] = useState("");
   const { handleRecipePick, handleTwist } = useTwistRecipe();
   const { pickedRecipe } = useAddTwist();
+  const inputRef = useRef();
 
+  const handleClick = () => {
+    const query = inputRef.current.value;
+    setTwistQuery(query);
+  };
+
+  console.log("qqq", twistQuery);
   return (
     <SimpleGrid columns={{ sm: 1, md: 2 }}>
       <GridItem>
@@ -75,6 +86,14 @@ const MixGrid = () => {
               {t}
             </Buttons>
           ))}
+          <HStack marginLeft={3}>
+            <Input
+              variant="flushed"
+              placeholder="onion, coriander"
+              ref={inputRef}
+            />
+            <LuSearch size={20} onClick={handleClick} />
+          </HStack>
         </Box>
       </GridItem>
     </SimpleGrid>

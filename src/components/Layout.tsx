@@ -4,14 +4,14 @@ import Heading from "./Heading";
 
 const Layout = () => {
   return (
-    <>
+    <div>
       <Heading />
-      <div className={"mt-[1vh] lg:mt-[8vh]"}>
+      <div className="mt-[1vh] lg:mt-[8vh]">
         <TwistContextProvider>
           <Outlet />
         </TwistContextProvider>
       </div>
-    </>
+    </div>
   );
 };
 

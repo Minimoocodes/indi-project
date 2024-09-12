@@ -64,9 +64,11 @@ const RecipeCard = ({ variant, recipe, showRandomRecipe, onClick }: Props) => {
       >
         <Image className="block" src={recipe?.photo} objectFit={"contain"} />
         <Center className="flex flex-col r-semibold w-full h-full absolute top-0 left-0 text-white bg-stone-600/50 opacity-0 hover:opacity-100 duration-500 md:text-xl">
-          <Text>{recipe?.name}</Text>
+          <Text className="text-center">{recipe?.name}</Text>
           <Link to={`/my-recipes/${recipe?.id}`}>
-            <Button variant="whiteAlpha">View Details</Button>
+            <Button marginTop={2} size="sm" variant="outline">
+              View Details
+            </Button>
           </Link>
         </Center>
       </Box>
