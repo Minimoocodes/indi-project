@@ -1,35 +1,29 @@
-import { useParams } from "react-router-dom";
-import { recipes } from "../data";
-import {
-  Button,
-  HStack,
-  Image,
-  SimpleGrid,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
-import Buttons from "../components/common/Button";
 import { useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import { useAddTwist } from "../hooks/useAddTwist";
+import { recipes } from "../data";
+import Buttons from "../components/common/Button";
+import { HStack, Stack, Text } from "@chakra-ui/react";
+import { Recipe } from "../components/common/RecipeCard";
 
 const RecipeDetailPage = () => {
+  const { chosenRecipe, setPickedRecipe: setChosenRecipe } = useAddTwist();
   const [ingredients, setIngredients] = useState<boolean>(true);
   const params = useParams();
   const data = recipes[params.id - 1];
 
+  const handleClick = (r: Recipe) => {
+    console.log("chosen is", r.name);
+    setChosenRecipe(r);
+  };
+
   return (
-    // <SimpleGrid
-    //   columns={{ sm: 1, md: 2 }}
-    //   className="r-regular w-full md:max-w-[80rem]"
-    //   spacing={4}
-    // >
     <div className="r-regular h-full grid grid-cols-1 justify-center gap-5 md:grid-cols-2">
-      {/* <Image src={data.photo} objectFit="cover" height="60vh" /> */}
       <div
         className="max-w-[85rem] h-[60vh] md:h-[92vh]"
         style={{
           backgroundImage: `url(${data.photo})`,
           backgroundSize: "cover",
-          // height: "92vh",
         }}
       ></div>
       <Stack spacing={4} paddingX={4}>
@@ -88,11 +82,14 @@ const RecipeDetailPage = () => {
           </div>
         </div>
         <div className="self-end mb-5">
-          <Buttons variant="large">Add a Fun Twist</Buttons>
+          <Link to={"/fun-twist"}>
+            <Buttons onClick={() => handleClick(data)} variant="large">
+              Add a Fun Twist
+            </Buttons>
+          </Link>
         </div>
       </Stack>
     </div>
-    // </SimpleGrid>
   );
 };
 

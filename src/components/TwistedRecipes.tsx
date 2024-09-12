@@ -4,9 +4,6 @@ import { TrimmedData } from "../hooks/useTwistRecipe";
 import { Text } from "@chakra-ui/react";
 
 const TwistedRecipes = () => {
-  // const { twistedRecipes } = useContext<TrimmedData | undefined>(
-  //   RecipeTwistContext
-  // );
   const [savedRecipes, setSavedRecipes] = useState<TrimmedData | undefined>([]);
 
   useEffect(() => {

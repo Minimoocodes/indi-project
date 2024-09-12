@@ -1,14 +1,15 @@
 import { Button, Text } from "@chakra-ui/react";
 import pancakes from "../assets/pancakes.jpg";
-import { useContext } from "react";
-import { LandingPageContext } from "../contexts/contexts";
 
-const FirstSection = () => {
-  const { secondSection } = useContext<HTMLDivElement>(LandingPageContext);
+interface Props {
+  secondSection: HTMLDivElement;
+}
 
+const FirstSection = ({ secondSection }: Props) => {
   const handleClick = () => {
-    secondSection.current.scrollIntoView({ behavior: "smooth" });
+    secondSection.current?.scrollIntoView({ behavior: "smooth" });
   };
+
   return (
     <div
       className="bg-cover bg-no-repeat flex flex-col items-center justify-center gap-4"

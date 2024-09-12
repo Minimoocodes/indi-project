@@ -1,11 +1,13 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import { LandingPageContext } from "../contexts/contexts";
+import { useEffect, useRef, useState } from "react";
 import RecipeCard from "./common/RecipeCard";
 import { recipes } from "../data";
 import Buttons from "./common/Button";
 
-const Slider = () => {
-  const { secondSection } = useContext<HTMLDivElement>(LandingPageContext);
+interface Props {
+  secondSection: HTMLDivElement;
+}
+
+const Slider = ({ secondSection }: Props) => {
   const sliderRef = useRef<HTMLDivElement>(null);
   const [centerIndex, setCenterIndex] = useState<number | null>(null);
 

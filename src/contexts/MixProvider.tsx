@@ -3,6 +3,9 @@ import { dataExample } from "../consts/dataExample";
 import { Recipe } from "../components/common/RecipeCard";
 import axios from "axios";
 
+interface Props {
+  children: ReactNode;
+}
 export interface TrimmedData {
   id: number;
   name: string;
@@ -24,10 +27,6 @@ export const MixedContext = createContext({
   setTwistedRecipe: (recipe) => {},
   twistedRecipe: {},
 });
-
-interface Props {
-  children: ReactNode;
-}
 
 export const MixProvider = ({ children }: Props) => {
   const [chosenRecipe, setChosenRecipe] = useState<Recipe | null>(null);

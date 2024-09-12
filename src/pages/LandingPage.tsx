@@ -1,19 +1,19 @@
 import { useRef } from "react";
-import { LandingPageContext } from "../contexts/contexts";
 import Slider from "../components/Slider";
 import FirstSection from "../components/FirstSection";
 import Footer from "../components/Footer";
+import { TwistContextProvider } from "../contexts/LandingPageProvider";
 
 const LandingPage = () => {
   const secondSection = useRef<HTMLDivElement>();
 
   return (
     <div>
-      <LandingPageContext.Provider value={{ secondSection }}>
-        <FirstSection />
-        <Slider />
+      <TwistContextProvider>
+        <FirstSection secondSection={secondSection} />
+        <Slider secondSection={secondSection} />
         <Footer />
-      </LandingPageContext.Provider>
+      </TwistContextProvider>
     </div>
   );
 };
