@@ -46,13 +46,11 @@ export const MixProvider = ({ children }: Props) => {
       chosenRecipe?.process
     } and return the data in this structure: ${JSON.stringify(dataExample)}`;
 
-    console.log("show up!!", query);
     setChosenTwist(twist);
     setQuery(query);
   };
 
   const getData = async (): Promise<void> => {
-    console.log("[GetData] the Query is", query);
     try {
       const apiKey = import.meta.env.VITE_GPT_API_KEY;
       const model = import.meta.env.VITE_GPT_MODEL;
@@ -78,13 +76,6 @@ export const MixProvider = ({ children }: Props) => {
       const twistedRecipe = data.choices[0].message.content;
       setTwistedRecipe(twistedRecipe);
       trimString(twistedRecipe);
-      console.log(
-        "[GetData] we are mixing up",
-        chosenRecipe,
-        "with",
-        twistedRecipe
-      );
-      console.log("[GetData] query is", query);
     } catch (error) {
       console.error(error);
     }
@@ -96,7 +87,6 @@ export const MixProvider = ({ children }: Props) => {
 
   const trimString = (string: string) => {
     const trimmed = string.replace(/```json/, "").replace(/```/, "");
-    console.log("ttt", trimmed);
     setTrimmedData(JSON.parse(trimmed));
   };
 
