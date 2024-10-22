@@ -13,7 +13,7 @@ import { recipes } from "../data";
 import { useTwistRecipe } from "../hooks/useTwistRecipe";
 import Buttons from "./common/Button";
 import { useAddTwist } from "../hooks/useAddTwist";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { LuSearch } from "react-icons/lu";
 
 const twist = [
@@ -31,17 +31,15 @@ const twist = [
 ];
 
 const MixGrid = () => {
-  const [twistQuery, setTwistQuery] = useState("");
-  const { handleRecipePick, handleTwist } = useTwistRecipe();
+  const { handleRecipePick, handleTwist, setChosenTwist } = useTwistRecipe();
   const { pickedRecipe } = useAddTwist();
   const inputRef = useRef();
 
   const handleClick = () => {
     const query = inputRef.current.value;
-    setTwistQuery(query);
+    setChosenTwist(query);
   };
 
-  console.log("qqq", twistQuery);
   return (
     <SimpleGrid columns={{ sm: 1, md: 2 }}>
       <GridItem>
@@ -92,7 +90,10 @@ const MixGrid = () => {
               placeholder="onion, coriander"
               ref={inputRef}
             />
-            <LuSearch size={20} onClick={handleClick} />
+            <LuSearch
+              size={20}
+              onClick={() => setChosenTwist(inputRef.current.value)}
+            />
           </HStack>
         </Box>
       </GridItem>

@@ -1,11 +1,13 @@
-import { Button, SimpleGrid } from "@chakra-ui/react";
+import { HStack, SimpleGrid } from "@chakra-ui/react";
+import { FileUploader } from "react-drag-drop-files";
+import Buttons from "./common/Button";
 
 const RecipeForm = () => {
   return (
     <>
       <form className="r-semibold p-5 px-8">
-        <SimpleGrid columns={{ sm: 1, md: 2 }}>
-          <section>
+        <SimpleGrid columns={{ sm: 1, md: 2 }} paddingX={20}>
+          <section className="flex flex-col gap-4">
             <div className="mb-3 flex flex-col gap-2">
               <label htmlFor="" className="form-label">
                 Name of the dish
@@ -16,7 +18,7 @@ const RecipeForm = () => {
                 placeholder="carbonara"
               />
             </div>
-            <div className="mb-3 flex flex-col gap-2">
+            <div className="mb-3 flex flex-col gap-4">
               <label htmlFor="" className="form-label">
                 Ingredients
               </label>
@@ -31,7 +33,7 @@ const RecipeForm = () => {
                   className="form-control"
                   placeholder="1 bowl"
                 />
-                <button>Add</button>
+                <Buttons variant="medium">Add</Buttons>
               </div>
               <div className="flex gap-1">
                 <input
@@ -40,29 +42,46 @@ const RecipeForm = () => {
                   placeholder="onion"
                 />
                 <input type="text" className="form-control" placeholder="1 " />
-                <button>Add</button>
+                <Buttons variant="medium">Add</Buttons>
               </div>
-              <Button maxW="80%" size="xs">
-                Add more
-              </Button>
+              <Buttons variant="medium">Add more</Buttons>
             </div>
           </section>
-          <section>
+          <section className="mb-3 flex flex-col gap-2">
             <div className="mb-3 flex flex-col gap-2">
               <label htmlFor="" className="form-label">
                 Steps
               </label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="1. rinse the rice."
-              />
+              <HStack justifyContent="space-between">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="1. cook the pasta"
+                />
+                <Buttons variant="medium">Add</Buttons>
+              </HStack>
+              <HStack justifyContent="space-between">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="2. cut the bacon."
+                />
+                <Buttons variant="medium">Add</Buttons>
+              </HStack>
+              <HStack justifyContent="space-between">
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="3. separate egg yolks"
+                />
+                <Buttons variant="medium">Add</Buttons>
+              </HStack>
             </div>
             <div className="mb-3 flex flex-col gap-2">
               <label htmlFor="" className="form-label">
                 Add a photo{" "}
               </label>
-              <input type="text" className="form-control" />
+              <FileUploader />
             </div>
             <div className="mb-3 flex flex-col gap-2">
               <label htmlFor="" className="form-label">
@@ -84,7 +103,9 @@ const RecipeForm = () => {
                 placeholder="Korean, Fusion, Snack"
               />
             </div>
-            <Button maxW="80%">Done</Button>
+            <div className="self-end">
+              <Buttons variant="large">Add it to my recipes</Buttons>
+            </div>
           </section>
         </SimpleGrid>
       </form>

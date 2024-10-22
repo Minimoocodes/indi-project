@@ -26,6 +26,7 @@ export const MixedContext = createContext({
   trimmedData: {},
   setTwistedRecipe: (recipe) => {},
   twistedRecipe: {},
+  setChosenRecipe: (twist: string) => {},
 });
 
 export const MixProvider = ({ children }: Props) => {
@@ -97,6 +98,7 @@ export const MixProvider = ({ children }: Props) => {
   const value = {
     chosenRecipe,
     chosenTwist,
+    setChosenTwist,
     trimmedData,
     query,
     handleRecipePick,

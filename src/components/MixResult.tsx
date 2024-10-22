@@ -1,8 +1,9 @@
 import { useTwistRecipe } from "../hooks/useTwistRecipe";
 import { useAddTwist } from "../hooks/useAddTwist";
-import { Box, Center, HStack, Spinner, Stack, Text } from "@chakra-ui/react";
+import { Center, HStack, Spinner, Stack, Text } from "@chakra-ui/react";
 import { TrimmedData } from "../contexts/MixProvider";
 import Buttons from "./common/Button";
+import { useEffect, useRef } from "react";
 
 interface DataExample {
   id: number;
@@ -21,6 +22,7 @@ interface Props {
 const MixResult = () => {
   const { twistedRecipes, setTwistedRecipes } = useAddTwist<Props>();
   const { trimmedData, isLoading } = useTwistRecipe();
+  const resultRef = useRef<HTMLDivElement>();
 
   const handleAdd = (data: TrimmedData) => {
     setTwistedRecipes([...twistedRecipes, data]);
@@ -28,6 +30,11 @@ const MixResult = () => {
     localStorage.setItem("savedRecipes", twistedRecipes);
   };
 
+  useEffect(() => {
+    if (!isLoading && trimmedData && resultRef) {
+      resultRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [isLoading, trimmedData]);
   // console.log("twisted recipes are", twistedRecipes);
 
   return (
@@ -37,8 +44,7 @@ const MixResult = () => {
           <Spinner size="lg" color="orange.500" />
         </Center>
       ) : (
-        <div className="p-3 flex justify-center">
-          {/* <Box padding="3" className="flex justify-center"> */}
+        <div ref={resultRef} className="p-3 flex justify-center">
           {trimmedData && (
             <div className="px-10 mb-12 r-regular flex flex-col gap-4 max-w-[75rem]">
               <Text className="r-semibold text-lg text-center md:text-2xl">
@@ -58,26 +64,27 @@ const MixResult = () => {
               </HStack>
               <Stack className="text-md md:text-lg">
                 <Text className="r-semibold">Ingredients</Text>
-                {trimmedData?.ingredients?.map((i) => (
-                  <Text>{i}</Text>
+                {trimmedData?.ingredients?.map((i, index) => (
+                  <Text key={index}>{i}</Text>
                 ))}
               </Stack>
               <Stack className="text-md md:text-lg">
                 <Text className="r-semibold">How to make</Text>
-                {trimmedData?.process?.map((p) => (
-                  <Text>{p}</Text>
+                {trimmedData?.process?.map((p, index) => (
+                  <Text key={index}>{p}</Text>
                 ))}
               </Stack>
-              <Buttons
-                className="self-end"
-                variant="large"
-                onClick={() => handleAdd(trimmedData)}
-              >
-                Add this to my recipe
-              </Buttons>
+              <div className="max-w-[250px] self-end">
+                <Buttons
+                  className="self-end"
+                  variant="large"
+                  onClick={() => handleAdd(trimmedData)}
+                >
+                  Add this to my recipe
+                </Buttons>
+              </div>
             </div>
           )}
-          {/* </Box> */}
         </div>
       )}
     </>
