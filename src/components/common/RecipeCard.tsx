@@ -23,7 +23,7 @@ interface Props {
   variant: string;
   recipe: Recipe | undefined;
   showRandomRecipe?: () => void;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const RecipeCard = ({ variant, recipe, showRandomRecipe, onClick }: Props) => {
@@ -90,7 +90,7 @@ const RecipeCard = ({ variant, recipe, showRandomRecipe, onClick }: Props) => {
             <Text className="border-r-2 px-2">
               {recipe?.ingredients?.length} ingredients
             </Text>
-            <Text>{recipe?.categories[0]}</Text>
+            <Text>{recipe?.categories?.[0]}</Text>
           </HStack>
           <HStack className="flex justify-center gap-3 r-semibold">
             <Link to={`/my-recipes/${recipe?.id}`}>

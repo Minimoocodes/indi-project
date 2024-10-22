@@ -8,8 +8,8 @@ import { Stack, Text } from "@chakra-ui/react";
 
 const WhatToEat = () => {
   const { randomRecipe, showRandomRecipe } = useRandom();
-  const IngreRecipeRef = useRef<HTMLDivElement>();
-  const RandomRecipeRef = useRef<HTMLDivElement>();
+  const IngreRecipeRef = useRef<HTMLDivElement>(null);
+  const RandomRecipeRef = useRef<HTMLDivElement>(null);
 
   return (
     <>

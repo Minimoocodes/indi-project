@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import { TwistContextProvider } from "../contexts/LandingPageProvider";
 
 const LandingPage = () => {
-  const secondSection = useRef<HTMLDivElement>();
+  const secondSection = useRef<HTMLDivElement | null>(null);
 
   return (
     <div>

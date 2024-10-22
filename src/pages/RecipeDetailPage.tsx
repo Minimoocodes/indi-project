@@ -7,15 +7,22 @@ import { HStack, Stack, Text } from "@chakra-ui/react";
 import { Recipe } from "../components/common/RecipeCard";
 
 const RecipeDetailPage = () => {
-  const { chosenRecipe, setPickedRecipe: setChosenRecipe } = useAddTwist();
+  const { setPickedRecipe: setChosenRecipe } = useAddTwist();
   const [ingredients, setIngredients] = useState<boolean>(true);
-  const params = useParams();
-  const data = recipes[params.id - 1];
+  const params = useParams<{ id: string }>();
+
+  const recipeId = params.id ? Number(params.id) : undefined;
+
+  const data = recipeId ? recipes[params.id - 1] : undefined;
 
   const handleClick = (r: Recipe) => {
     console.log("chosen is", r.name);
     setChosenRecipe(r);
   };
+
+  if (!data) {
+    return <div>Recipe not found.</div>;
+  }
 
   return (
     <div className="r-regular h-full grid grid-cols-1 justify-center gap-5 md:grid-cols-2">

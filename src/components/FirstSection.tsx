@@ -1,8 +1,9 @@
 import { Button, Text } from "@chakra-ui/react";
 import pancakes from "../assets/pancakes.jpg";
+import { MutableRefObject } from "react";
 
 interface Props {
-  secondSection: HTMLDivElement;
+  secondSection: MutableRefObject<HTMLDivElement | null>;
 }
 
 const FirstSection = ({ secondSection }: Props) => {

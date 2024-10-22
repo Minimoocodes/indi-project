@@ -4,7 +4,7 @@ import { recipes } from "../data";
 import Buttons from "./common/Button";
 
 interface Props {
-  secondSection: HTMLDivElement;
+  secondSection: React.RefObject<HTMLDivElement>;
 }
 
 const Slider = ({ secondSection }: Props) => {
@@ -12,8 +12,6 @@ const Slider = ({ secondSection }: Props) => {
   const [centerIndex, setCenterIndex] = useState<number | null>(null);
 
   const cardWidth = 260;
-  const cardsToShow = 5;
-  const middleCardIndex = Math.floor(cardsToShow / 2);
 
   useEffect(() => {
     const updateCenterIndex = () => {

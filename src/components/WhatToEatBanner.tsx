@@ -5,7 +5,10 @@ import { useContext } from "react";
 import { WhatToEatContext } from "../contexts/contexts";
 
 const WhatToEatBanner = () => {
-  const { IngreRecipeRef, RandomRecipeRef } = useContext(WhatToEatContext);
+  const { IngreRecipeRef, RandomRecipeRef } = useContext(WhatToEatContext) as {
+    IngreRecipeRef: React.RefObject<HTMLDivElement>;
+    RandomRecipeRef: React.RefObject<HTMLDivElement>;
+  };
   return (
     <div>
       <SimpleGrid columns={{ sm: 1, md: 2 }} height="92vh">
@@ -20,6 +23,7 @@ const WhatToEatBanner = () => {
             size="lg"
             colorScheme="blackAlpha"
             onClick={() =>
+              IngreRecipeRef.current &&
               IngreRecipeRef.current.scrollIntoView({ behavior: "smooth" })
             }
           >
@@ -32,6 +36,7 @@ const WhatToEatBanner = () => {
         >
           <Button
             onClick={() =>
+              RandomRecipeRef.current &&
               RandomRecipeRef.current.scrollIntoView({ behavior: "smooth" })
             }
             size="lg"
